@@ -1,0 +1,49 @@
+{
+  "customers": [
+    {
+      "id": "1",
+      "firstName": "Sundar",
+      "lastName": "Pichai",
+      "email": "sundar.pichai@google.com",
+      "phone": "1234567890",
+      "accounts": [
+        {
+          "accountNo": "1001999",
+          "type": "SAVINGS_ACCOUNT",
+          "branch": "Bellandur",
+          "balance": 1000
+        },
+        {
+          "accountNo": "1001888",
+          "type": "SAVINGS_ACCOUNT",
+          "branch": "Indra Nagar",
+          "balance": 2000
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "firstName": "Jeff",
+      "lastName": "Bezos",
+      "email": "jeff.bezos@amazon.com"
+    },
+    {
+      "id": "3",
+      "firstName": "Satya",
+      "lastName": "Nadelia",
+      "email": "satya.nadella@microsoft.com"
+    },
+    {
+      "id": "4",
+      "firstName": "Sergey",
+      "lastName": "Brin",
+      "email": "sergey.brin@google.com"
+    },
+    {
+      "id": "5",
+      "firstName": "Larry",
+      "lastName": "Page",
+      "email": "larry page@google.com"
+    }
+  ]
+}

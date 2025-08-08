@@ -1,0 +1,268 @@
+/* =========================
+   GLOBAL STYLING
+========================= */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff; /* Default text color for contrast */
+  height: 100%;
+  background-image: url('C:\Users\himan\Desktop\customer-crud-app\src\components\image4.jpg'); /* Global background image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Overlay for better readability */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 50, 70, 0.4);
+  z-index: -1;
+}
+
+/* App container */
+.App {
+  text-align: center;
+}
+
+/* Central container */
+.container {
+  max-width: 1100px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.App-header, .navbar {
+  background: linear-gradient(90deg, #0072c6, #00b140);
+  color: white;
+  padding: 16px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+.nav-link {
+  color: white !important;
+  font-weight: 500;
+  margin: 0 10px;
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 0.85;
+}
+
+.nav-animated {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-animated::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-animated:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-primary {
+  background-color: #0072c6;
+  border-color: #0072c6;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #005fa3;
+  border-color: #005fa3;
+}
+
+.btn-secondary {
+  background-color: #00b140;
+  border-color: #00b140;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #009f36;
+  border-color: #009f36;
+}
+
+/* =========================
+   FORMS
+========================= */
+form, .form-card {
+  background-color: white;
+  padding: 25px 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  max-width: 650px;
+  margin: 20px auto;
+  color: #002f6c;
+}
+
+label {
+  font-weight: 600;
+  color: #0072c6;
+}
+
+input.form-control, 
+select.form-control, 
+textarea.form-control {
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 10px;
+  transition: all 0.3s;
+}
+
+input.form-control:focus, 
+select.form-control:focus, 
+textarea.form-control:focus {
+  border-color: #0072c6;
+  box-shadow: 0 0 6px rgba(0, 114, 198, 0.3);
+  outline: none;
+}
+
+/* =========================
+   TABLES
+========================= */
+/* =========================
+   TABLES
+========================= */
+.table-container {
+  background-color: rgba(128, 128, 128, 0.6); /* Grey transparent */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-top: 20px;
+}
+
+.table {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: transparent; /* No solid white */
+  color: white; /* Text readable on dark background */
+}
+
+.table th {
+  background-color: rgba(0, 114, 198, 0.8); /* Semi-transparent blue header */
+  color: white;
+  font-weight: 600;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05); /* Light tint for odd rows */
+}
+
+.table-striped tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly brighter even rows */
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 12px;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+  transition: background-color 0.2s;
+}
+
+/* Account table special styling */
+.account-table thead {
+  background-color: rgba(0, 122, 51, 0.8); /* Semi-transparent green */
+  color: white;
+}
+
+.low-balance td:last-child {
+  color: #ffb3b3;
+  font-weight: 600;
+}
+
+.high-balance td:last-child {
+  color: #b3ffb3;
+  font-weight: 600;
+}
+
+/* =========================
+   BADGES
+========================= */
+.badge {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badge-success {
+  background-color: #00b140;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* =========================
+   HEADINGS & LINKS
+========================= */
+h3 {
+  color: #0072c6;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.btn {
+  margin-right: 10px;
+}
+
+/* =========================
+   CUSTOMER DETAILS CARD
+========================= */
+.customer-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: #002f6c;
+}
