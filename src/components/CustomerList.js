@@ -1,32 +1,88 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/customers')
-      .then(res => setCustomers(res.data))
-      .catch(err => console.error(err));
+    let storedCustomers = JSON.parse(localStorage.getItem('customers')) || [];
+
+    // Preload data if not in localStorage
+    if (storedCustomers.length === 0) {
+      storedCustomers = [
+        {
+          id: 1,
+          firstName: 'Sundar',
+          lastName: 'Pichai',
+          email: 'sundar.pichai@google.com',
+          phone: '1234567890',
+          accounts: [
+            {
+              accountNo: '1001999',
+              type: 'SAVINGS_ACCOUNT',
+              branch: 'Bellandur',
+              balance: 1000
+            },
+            {
+              accountNo: '1001888',
+              type: 'SAVINGS_ACCOUNT',
+              branch: 'Indra Nagar',
+              balance: 2000
+            }
+          ]
+        },
+        {
+          id: 2,
+          firstName: 'Jeff',
+          lastName: 'Bezos',
+          email: 'jeff.bezos@amazon.com',
+          phone: '9876543210',
+          accounts: []
+        },
+        {
+          id: 3,
+          firstName: 'Satya',
+          lastName: 'Nadella',
+          email: 'satya.nadella@microsoft.com',
+          phone: '1122334455',
+          accounts: []
+        },
+        {
+          id: 4,
+          firstName: 'Sergey',
+          lastName: 'Brin',
+          email: 'sergey.brin@google.com',
+          phone: '2233445566',
+          accounts: []
+        },
+        {
+          id: 5,
+          firstName: 'Larry',
+          lastName: 'Page',
+          email: 'larry.page@google.com',
+          phone: '3344556677',
+          accounts: []
+        }
+      ];
+      localStorage.setItem('customers', JSON.stringify(storedCustomers));
+    }
+
+    setCustomers(storedCustomers);
   }, []);
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete?')) {
-      axios.delete(`http://localhost:3001/customers/${id}`)
-        .then(() => {
-          setCustomers(prev => prev.filter(c => c.id !== id));
-        })
-        .catch(err => console.error(err));
+      const updatedCustomers = customers.filter(c => c.id !== id);
+      setCustomers(updatedCustomers);
+      localStorage.setItem('customers', JSON.stringify(updatedCustomers));
     }
   };
 
-  // Example badge generator (replace with your actual logic if you have account status, balance, etc.)
   const getStatusBadge = (email) => {
     if (email.includes('@')) {
-      return <span className="badge badge-success">Verified</span>;
+      return <span className="badge bg-success">Verified</span>;
     }
-    return <span className="badge badge-warning">Pending</span>;
+    return <span className="badge bg-warning">Pending</span>;
   };
 
   return (

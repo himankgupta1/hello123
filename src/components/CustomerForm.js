@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import axios from 'axios';
 
 function CustomerForm() {
   const { id } = useParams();
@@ -14,9 +13,11 @@ function CustomerForm() {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:3001/customers/${id}`)
-        .then(res => setForm(res.data))
-        .catch(err => console.error(err));
+      const storedCustomers = JSON.parse(localStorage.getItem('customers')) || [];
+      const customer = storedCustomers.find(c => c.id === parseInt(id, 10));
+      if (customer) {
+        setForm(customer);
+      }
     }
   }, [id]);
 
@@ -33,13 +34,23 @@ function CustomerForm() {
       return;
     }
 
-    const request = id
-      ? axios.put(`http://localhost:3001/customers/${id}`, form)
-      : axios.post('http://localhost:3001/customers', form);
+    let storedCustomers = JSON.parse(localStorage.getItem('customers')) || [];
 
-    request
-      .then(() => navigate('/customers'))
-      .catch(err => console.error(err));
+    if (id) {
+      // Edit existing
+      storedCustomers = storedCustomers.map(c =>
+        c.id === parseInt(id, 10) ? { ...form, id: parseInt(id, 10) } : c
+      );
+    } else {
+      // Add new
+      const newId = storedCustomers.length > 0
+        ? Math.max(...storedCustomers.map(c => c.id)) + 1
+        : 1;
+      storedCustomers.push({ ...form, id: newId });
+    }
+
+    localStorage.setItem('customers', JSON.stringify(storedCustomers));
+    navigate('/customers');
   };
 
   return (
